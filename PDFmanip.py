@@ -4,7 +4,8 @@ from PyPDF2 import PdfFileReader, PdfFileWriter
 out = PdfFileWriter()
 
 # Reading a PDF
-file = PdfFileReader("C:/fakesnake/unrelatednote/git-cheat-sheet.pdf")
+path = input("Enter file path_\t")
+file = PdfFileReader(path)
 num = file.numPages
 
 # Iterating thru the PDF
@@ -14,9 +15,11 @@ for pg in range(num):
     out.addPage(page)
 
 # Creating a Password
-pw = "pass123"
+pw = input("Enter new password_\t")
 out.encrypt(pw)
 
-with open("git_enc","wb") as f:
+# Creating a new (encrypted) file and adding the output abject into it.
+newfile = input("Enter a new name for the encrypted file_\t")
+with open(newfile,"wb") as f:
     out.write(f)
 print("File Encrypted!")
